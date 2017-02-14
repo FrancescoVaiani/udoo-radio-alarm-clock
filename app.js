@@ -21,6 +21,11 @@ require('./app/crud').setup();
 app.radio = require('./app/radio');
 app.schedule = require('./app/schedule');
 app.schedule.setup(app);
+
+// for testing purposes
+if(! /^win/.test(process.platform)) {
+    require('./app/onoff')(app, 116);
+}
 // get all data/stuff of the body (POST) parameters
 // parse application/json
 app.use(bodyParser.json());
@@ -65,17 +70,6 @@ require('./app/routes')(app); // configure our routes
 // startup our app at http://localhost:8080
 server.listen(port, function () {
   // Listening
-  //try {
-  //    var uid = parseInt(process.env.SUDO_UID);
-  //    if (uid) {
-  //        process.setuid(uid);
-  //    }
-  //    console.log('Server\'s UID is now ' + process.getuid());
-  //} catch (err) {
-  //    console.log('Cowardly refusing to keep the process alive as root.');
-  //    process.exit(1);
-  //}
-  // shoutout to the user
   console.log('Magic happens on port ' + port);
 });
 
