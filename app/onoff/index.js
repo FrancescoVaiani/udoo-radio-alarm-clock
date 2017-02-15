@@ -16,13 +16,13 @@ module.exports =  function(app, pin){
 			return console.error(err);
 		}
 		if(value != lastValue){
-            pause = true;
-            console.log("pause");
-            setTimeout(function(){
-                pause = false;
-                console.log("unpause");
-            },500);
 			if(value == 1){
+                pause = true;
+                console.log("pause");
+                setTimeout(function(){
+                    pause = false;
+                    console.log("unpause");
+                },500);
 				if(app.radio.status().status){
 					app.radio.stop();
 					console.log('stop radio');
